@@ -6,16 +6,24 @@
 
 Podczas tworzenia aplikacji asychronicznych twórcy wielokrotnie napotykają ograniczenia narzędzi którę są nie przystosowane do pracy z tą klasą aplikacji. Podstawowe techniki takie jak analiza wyjątków czy klasyczne debuggery przeważnie nie daje nam wystarczających informacji o naturze problemów. Iulian Dragos w swojej prezentacji  \cite{rethingningDebugger} przedstawił koncepje asychronicznego debuggera przeznaczonego do debugowania aplikacji stworzych przy wykorzystaniu technologi Akka oraz mechanizmu Feature'ów z języka Scala. Po jej wysłuchaniu uznałem że przedstawiona koncepja jest bardzo dobra, jednakże sposoby persystencji komunikatów będą miały zby duży wpływ na działania debuggowanej aplikacji.
 
+
+
 \section{Cele pracy}
 
-Celem poniższej pracy jest zbadanie możliwości oraz efektywaności debuggowania aplikacji komunikujących się asychronicznie w oparciu o historię komunikatów. Głównym obszarem zainteresowań pracy będzie narzut sposobu persystowania i analizy komunikatów na czas wykonywania poszczególnych części aplikacji. Zamierzam zaimplementować, przetestować różne podejścia oraz zestawić wyniki wraz z ograniczeniami danej metody.
-
-\section{Środowisko}
-
-Jako że przedmiotem tej pracy nie jest stworzenie asychronicznego debuggera zamierzam wykorzystać pracę Iuliana \cite{asychDebuggerGh}. Zaimpelemtowany debugger jest częścią ScalaIDE - IDE dedykowanego Scali. Zamierzam testować wydajność wykorzystując aplikacje napisane w frameworku Akka - najpopularniejszej technologi do pisania aplikacji asychronicznych opartych o wymiane komunikatów w ekosystemie Scali.
+Celem poniższej pracy jest zbadanie możliwości oraz efektywaności debuggowania aplikacji komunikujących się asychronicznie w oparciu o historię komunikatów. Głównym obszarem zainteresowań pracy będzie narzut sposobu persystowania i analizy komunikatów na czas wykonywania poszczególnych części aplikacji. Zamierzam zaimplementować, przetestować różne podejścia oraz zestawić wyniki wraz z ograniczeniami danej metody. Jako że przedmiotem tej pracy nie jest stworzenie asychronicznego debuggera zamierzam wykorzystać pracę Iuliana \cite{asychDebuggerGh}. Zaimpelemtowany debugger jest częścią ScalaIDE - IDE dedykowanego Scali. Zamierzam testować wydajność wykorzystując aplikacje napisane w frameworku Akka - najpopularniejszej technologi do pisania aplikacji asychronicznych opartych o wymiane komunikatów w ekosystemie Scali.
 
 
+\section{Asychroniczny debugger}
 
+
+
+\subsection{Zasada działania}
+
+\subsection{Definicja komunikatu w środowisku Akka}
+
+//TODO opis
+
+\subsection*{•}
 
 
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.6.20)  20 JUN 2015 19:31
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.6.20)  20 JUN 2015 19:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -623,36 +623,60 @@ LaTeX Warning: Citation `rethingningDebugger' on page 7 undefined on input line
  7.
 
 
-LaTeX Warning: Citation `asychDebuggerGh' on page 7 undefined on input line 15.
+LaTeX Warning: Citation `asychDebuggerGh' on page 7 undefined on input line 13.
 
 
-) [7]
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 20.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 26.
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
+File: omsptm.fd 
+)
+
+LaTeX Font Warning: Font shape `OMS/ptm/bx/n' undefined
+(Font)              using `OMS/ptm/m/n' instead
+(Font)              for symbol `textbullet' on input line 26.
+
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 26.
+)
+Underfull \vbox (badness 2443) has occurred while \output is active []
+
+ [7]
+[8]
 \openout2 = `rozdzial2.aux'.
 
- (./rozdzial2.tex [8
+ (./rozdzial2.tex
+Rozdzia\l  2.
+[9
 
 
 
 ]
-Rozdzia\l  2.
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 36.
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 43.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-) [9] [10]) [11]
+) [10]) [11]
 No file praca.bbl.
 (./praca.aux (./rozdzial1.aux) (./rozdzial2.aux))
 
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
 LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 5614 strings out of 494993
- 74102 string characters out of 6180621
- 162161 words of memory out of 5000000
- 8685 multiletter control sequences out of 15000+600000
- 70457 words of font info for 68 fonts, out of 8000000 for 9000
+ 5641 strings out of 494993
+ 74535 string characters out of 6180621
+ 161161 words of memory out of 5000000
+ 8708 multiletter control sequences out of 15000+600000
+ 73517 words of font info for 71 fonts, out of 8000000 for 9000
  34 hyphenation exceptions out of 8191
- 38i,11n,45p,793b,1004s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,11n,45p,910b,1592s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/
@@ -662,7 +686,7 @@ lvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvro
 are/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/t
 ype1/urw/times/utmri8a.pfb>
-Output written on praca.pdf (11 pages, 184886 bytes).
+Output written on praca.pdf (11 pages, 186327 bytes).
 PDF statistics:
  78 PDF objects out of 1000 (max. 8388607)
  54 compressed objects within 1 object stream
