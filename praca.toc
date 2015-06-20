@@ -1,0 +1,10 @@
+\select@language {polish}
+\contentsline {chapter}{\numberline {1}Wprowadzenie}{7}
+\contentsline {section}{\numberline {1.1}Motywacja}{7}
+\contentsline {section}{\numberline {1.2}Cele pracy}{7}
+\contentsline {section}{\numberline {1.3}\IeC {\'S}rodowisko}{7}
+\contentsline {chapter}{\numberline {2}Pierwszy dokument}{9}
+\contentsline {section}{\numberline {2.1}Struktura dokumentu}{9}
+\contentsline {section}{\numberline {2.2}Kompilacja}{10}
+\contentsline {section}{\numberline {2.3}Narz\IeC {\k e}dzia}{10}
+\contentsline {section}{\numberline {2.4}Przygotowanie dokumentu}{11}
