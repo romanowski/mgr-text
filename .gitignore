@@ -1,2 +1,5 @@
-texput.log
-
+*.log
+books
+*.aux
+*.toc
+*.gz
