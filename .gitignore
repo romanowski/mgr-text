@@ -1,0 +1,9 @@
+*.log
+books
+*.aux
+*.toc
+*.gz
+*.bbl
+*.blg
+*.dvi
+

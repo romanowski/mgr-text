@@ -1,0 +1,91 @@
+\documentclass[11pt]{aghdpl}
+% \documentclass[en,11pt]{aghdpl}  % praca w języku angielskim
+\usepackage[polish]{babel}
+%\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+
+% dodatkowe pakiety
+\usepackage{enumerate}
+\usepackage{listings}
+\lstloadlanguages{TeX}
+
+\lstset{
+  literate={ą}{{\k{a}}}1
+           {ć}{{\'c}}1
+           {ę}{{\k{e}}}1
+           {ó}{{\'o}}1
+           {ń}{{\'n}}1
+           {ł}{{\l{}}}1
+           {ś}{{\'s}}1
+           {ź}{{\'z}}1
+           {ż}{{\.z}}1
+           {Ą}{{\k{A}}}1
+           {Ć}{{\'C}}1
+           {Ę}{{\k{E}}}1
+           {Ó}{{\'O}}1
+           {Ń}{{\'N}}1
+           {Ł}{{\L{}}}1
+           {Ś}{{\'S}}1
+           {Ź}{{\'Z}}1
+           {Ż}{{\.Z}}1
+}
+
+%---------------------------------------------------------------------------
+
+\author{Krzysztof Romanowski}
+\shortauthor{K. Romanowski}
+
+\titlePL{Debuggowanie aplikacji kominukujących się asynchronicznie oparte o historię komunikatów.}
+\titleEN{History-based approach for debugging applications using asynchronous communication.}
+
+\shorttitlePL{Debugowanie} % skrócona wersja tytułu jeśli jest bardzo długi
+\shorttitleEN{Debugging}
+
+\thesistype{Praca dyplomowa magisterska}
+%\thesistype{Master of Science Thesis}
+
+\supervisor{dr hab. Arkadiusz Janik, dr inż}
+%\supervisor{Marcin Szpyrka PhD, DSc}
+
+\degreeprogramme{Informatyka}
+%\degreeprogramme{Computer Science}
+
+\date{2015}
+
+\department{Katedra Informatyki}
+
+\faculty{Wydział Elektrotechniki, Automatyki, Elektroniki i Telekomunikacji}
+
+\acknowledgements{Serdecznie dziękuję \dots tu ciąg dalszych podziękowań np. dla promotora, żony, sąsiada itp.}
+
+
+\setlength{\cftsecnumwidth}{10mm}
+
+%---------------------------------------------------------------------------
+\setcounter{secnumdepth}{4}
+
+\begin{document}
+
+\titlepages
+\setcounter{tocdepth}{3}
+\tableofcontents
+\clearpage
+
+\include{rozdzial1}
+\include{rozdzial2}
+\include{rozdzial3}
+\include{rozdzial4}
+\include{rozdzial5}
+\include{rozdzial6}
+
+
+% itd.
+% \appendix
+% \include{dodatekA}
+% \includegraphics[scale=•]{•}{dodatekB}
+% itd.
+\bibliographystyle{alpha}
+\bibliography{bibliografia}
+
+
+\end{document}

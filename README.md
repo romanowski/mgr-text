@@ -1,0 +1,2 @@
+# mgr-text
+Magisterka - tekst
