@@ -8,6 +8,10 @@ W tym rozdziale zamierzam przedstawić zasadę działania wykorzystanego asynchr
 
 W tym podrozdziale przedstawię techniki oraz narzędzia służące analizie i debugowaniu aplikacji które udostępnia ekosystem JVM. Zamierzam również pokazać dlaczego narzędzia te są niewystrczające do debugowania programów asychronicznych.
 
+\subsection{Histria działania jako klucz do rozwiązania problemu}
+
+//TODO opisać to szeżej i zmienić tytuł.
+
 \subsection{Wyjątki i ich analiza}
 Duża część błędów w programie kończy się rzuceniem wyjątku. Poza informacją o rodzaju wyjątku oraz komunikatem błędu JVM udostępnia nam stack trace.
 
@@ -26,8 +30,11 @@ Załączony listing daje nam informacje o stosie wywołań od odebrania ostatnie
 
 \subsection{Tracing}
 
-Jest to dość proste i naiwne podejście do debugowania polegające logowaniu punktów w aplikacji (na standardowe wyjście lub w inne miejsce, np. do pliku) i późniejszej analizie (przeważnie post mortem). Podstawową wadą tego rozwiązania jest konieczność ponownej kompilacji kodu dla każdej fali dodawania kolejnych logów. Po poprawieniu błędów programiści często zapominają o usunięciu wszystkich logowanych komunikatów co zaśmieca logi czy kod źródłowy a nawet potrafi być przyczyną problemów.
-Rozwiązanie mimo swojej prosty ma szereg zalet. Nie wymaga żadnych specjalistycznych narzędzi ani umiejętności. Posiada także całkiem mały wpływ na wykonanie aplikacji lecz w przypadku aplikacji wielowątkowych wymaga zastosowania bardziej zaawansowanych technik (takich jak dedykowany plik dla każdego wątku). 
+Jest to dość proste i naiwne podejście do debugowania polegające logowaniu tekstowych komunikatów zawierających informacje o stanie aplikacji w danym punkcie oraz późniejszej analizie (przeważnie post mortem). Podstawową wadą tego rozwiązania jest konieczność ponownej kompilacji kodu dla każdej fali dodawania kolejnych logów. Często informacje potrzebne do diagnozy problemu nie dają się łatwo zalogować czy to z powodu swojego rozmiary czy struktury. Po poprawieniu błędów programiści często zapominają o usunięciu wszystkich logowanych komunikatów co zaśmieca logi czy kod źródłowy a nawet potrafi być przyczyną problemów.
+Rozwiązanie mimo swojej prosty ma szereg zalet. Nie wymaga żadnych specjalistycznych narzędzi ani umiejętności. Posiada także całkiem mały wpływ na wykonanie aplikacji lecz w przypadku aplikacji wielowątkowych wymaga zastosowania bardziej zaawansowanych technik (takich jak dedykowany plik dla każdego wątku).
+
+Umiejętnie stosowany tracing pozwala nam śledzić historię działania aplijakacji. Niestety jest to metoda dość prymitywna i w przypdaku bardziej zaawansowowanych problemów jest niewystarczająca.
+ 
 Mimo swej prostoty rozwiązanie to jest szeroko stosowane przez programistów. W przypadku aplikacji asychronicznych często jest jednym dostępnym sposobem debugowania. 
 
 \subsection{Instrumentacja kodu}
@@ -41,27 +48,24 @@ Debugger jest programem do dynamicznej analizy wykonania innych programów.
     With the magic of including debugging symbols in the executable, the debugger gives the illusion of executing the program line by line of source code, instead of instruction by instruction of compiled machine code~\cite{artOfDebugging}
 \end{quote}
 Odwzorowanie kodu maszynowego na kod źródłowy jest skomplikowanym zadaniem, zwłaszcza dla języków wysokopoziomowych. Współczesne debuggery opierają swoje działanie o mechanizm breakpointów czyli definicji miejsc w których wykonanie programu powinno zostać wstrzymane (czasem tylko w celu zalogowania komunikatu - debugger może być także wykorzystany do tracing'u). Po wstrzymaniu działania użytkownik może przeglądać wartości zmiennych, pól czy w bardziej zaawansowanych debuggerach ewaluować wyrażenia.
-Debugger pozwala także na sterowanie wykonaniem programu. Poza komendami które nie ingerują w normalne wykonanie programu (Step in, Step out, Step into itp.) pozwala także na np. pownowe wykonanie funkcji (drop frame).
+Debugger pozwala także na sterowanie wykonaniem programu. Poza komendami które nie ingerują w normalne wykonanie programu (Step in, Step out, Step into itp.) pozwala także na np. pownowe wykonanie funkcji (drop frame). Debugger jest doskonałym narzędziem zarówno do naprawiania problemów jak i do zapoznania się z instniejącym kodem.
 
-Niestety debuggery dostępne dla aplikacji działających na JVM mają te samą wadę co analiza wyjątków. Są skuteczne tylko do analizy logiki w ramach pojedynczego wątku. Jest to spowodowane architekturą JVM oraz udostępnianymi przez nią narzędziami.
 
-% Dalsza część jest mocno pogądowa i nie nadaje się za bardzo do czytania (poza tytułami rozdziałów
 
-\section{debugowanie na JVM}
+Niestety debuggery dostępne dla aplikacji działających na JVM posiadają to samo ograniczenie co   analiza wyjątków. Są skuteczne tylko do analizy logiki w ramach pojedynczego wątku. Jest to spowodowane architekturą JVM oraz udostępnianymi przez nią narzędziami.
 
-W tym podrozdziale zamierzam przedstawić JVM w kontekście debugowania aplikacji asynchronicznych. Zmierzam pokazać że potok wywoływania kodu maszynowego różni się koncepcyjnie od potoku przetwarzania komunikatów przez aplikację asynchroniczne. Zamierzam także przestawić właściwości Java Platform Debugger Architecture na których opiera się działania Asychronicznego Debuggera.
 
-\subsection{JVM: wątki}
+\subsection{Java Debug Platform Achitecture}
 
-TODO - opisać stosowość i przypisanie do wątku. Pokazać dlaczego rozdzięk między logiką opartą na komunikatach a na wywołaniach metody
+W tym podroździale zamierzam przedstawić JDPA którę jest podstawowym narzędziem do budowy debuggerów dla aplikacji działących na JVM. Zamierzam również przedstawić narzędzia i właściwości które zamierzam wykorzystać w dalszej części swojej pracy.
 
-\subsection{Architektura JDPA}
+\subsection{Architektura}
 
 Jako że każdy debugger jest odzielną aplikacją, Java Platform Debugger Architecture składa się z trzech koponentów przedstawionych na wykresie:
 
 \includegraphics{imgs/jdpa}
 
-1. JVM TI: instrumentacja JVM
+\subsubsection{JVM TI: instrumentacja JVM} 
 
 Java™ Virtual Machine Tool Interface służy instrumentacji debuggej JVM.
 
@@ -79,11 +83,11 @@ Aspektem który nas najbardziej interesuje jest niskopoziomowa obsługa breakpoi
 JVM TI pozwala nam także na dostęp do zmiennych lokalnych oraz parametrów metod. Pozwoli nam to na przechwytywanie przesłanych komunikatów bez udziału debbugera a co za tym idzie przyspieszenie całego procesu, gdyż komunikacja między dwiema aplikacjami jest kosztowna.
 
 
-2. JDWP: protokół transportowy
+\subsubsection{JDWP: protokół transportowy}
 
 Java Debug Wire Protocol: protokół transportowy wykożystywany do komunikacji między maszyną wirtualną (JVM TI) a debuggerem (lub innym programem takim jak profiler). W asychronicznym debuggerze korzystamy z imlementacji dostarczanej przez JDT. W wiekszości przypadków komunikacja jest schowana za warstwą abstracji implementują JDI. Więcej informacji możemy znaleść w specyfikacji\cite{jwdpSpec}
 
-3. JDI: wysokopoziomowe API
+\subsubsection{JDI: wysokopoziomowe API}
 
 Wysokopoziomowe API służace do tworzenia debuggerów i innych narzędzi programistycych (np. profilerów). Podobnie jak JDWP jest zaimplementowany przez JDT i stanowi wysokopoziomowe API które jest podstawą debuggera.
 Zawiera metody pozwalające na:
@@ -95,9 +99,14 @@ Zawiera metody pozwalające na:
 
 Większość wymienionych metod zostanie wykorzystana do stworzenia asychronicznego debugera.
 
+
+% Dalsza część jest mocno pogądowa i nie nadaje się za bardzo do czytania (poza tytułami rozdziałów
+
 \subsection{Narzędia udostępniane przez JDPA}
 
 TODO: opisać breakpoint, code evaluation itp. - to co bedziemy wykorzystywać.
+
+
 
 \section{Zasada dzialania}
 
@@ -112,3 +121,12 @@ TODO
 TODO
 
 \subsection{Asychroniczne debuggowanie aplikacji aktorowych: Akka}
+
+\section{debugowanie na JVM}
+
+W tym podrozdziale zamierzam przedstawić JVM w kontekście debugowania aplikacji asynchronicznych. Zmierzam pokazać że potok wywoływania kodu maszynowego różni się koncepcyjnie od potoku przetwarzania komunikatów przez aplikację asynchroniczne. Zamierzam także przestawić właściwości Java Platform Debugger Architecture na których opiera się działania Asychronicznego Debuggera.
+
+\subsection{JVM: wątki}
+
+TODO - opisać stosowość i przypisanie do wątku. Pokazać dlaczego rozdzięk między logiką opartą na komunikatach a na wywołaniach metody
+

@@ -1,0 +1,8 @@
+Sources:
+
+1. http://www.jstor.org/stable/98663?seq=1#page_scan_tab_contents - The Diagnosis of Mistakes in Programmes on the EDSAC
+
+2. https://books.google.pl/books?hl=pl&lr=&id=_63Bm4LAdDIC&oi=fnd&pg=PP1&dq=debugging&ots=TAtp89xzN6&sig=yi-5J660sSM0OETuFMGsudnQeaI&redir_esc=y#v=onepage&q=debugging&f=false
+
+3. http://www.typesafe.com/activator/template/reactive-maps - aplikacja
+
