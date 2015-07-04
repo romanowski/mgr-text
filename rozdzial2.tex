@@ -10,7 +10,11 @@ W tym podrozdziale przedstawię techniki oraz narzędzia służące analizie i d
 
 \subsection{Histria działania jako klucz do rozwiązania problemu}
 
-//TODO opisać to szeżej i zmienić tytuł.
+//TODO opisać to szerzej i zmienić tytuł.
+
+\subsection{Historia wywołania a wątki}
+
+//TODO opisac mechanizm analizy stosu wywołań. Pokazać że poza stosem nie mamy innych informacji
 
 \subsection{Wyjątki i ich analiza}
 Duża część błędów w programie kończy się rzuceniem wyjątku. Poza informacją o rodzaju wyjątku oraz komunikatem błędu JVM udostępnia nam stack trace.
@@ -55,7 +59,7 @@ Debugger pozwala także na sterowanie wykonaniem programu. Poza komendami które
 Niestety debuggery dostępne dla aplikacji działających na JVM posiadają to samo ograniczenie co   analiza wyjątków. Są skuteczne tylko do analizy logiki w ramach pojedynczego wątku. Jest to spowodowane architekturą JVM oraz udostępnianymi przez nią narzędziami.
 
 
-\subsection{Java Debug Platform Achitecture}
+\section{Java Debug Platform Achitecture}
 
 W tym podroździale zamierzam przedstawić JDPA którę jest podstawowym narzędziem do budowy debuggerów dla aplikacji działących na JVM. Zamierzam również przedstawić narzędzia i właściwości które zamierzam wykorzystać w dalszej części swojej pracy.
 
@@ -77,34 +81,30 @@ Nie jest to tylko narzędzie do debugowania ale może być także podstawą dla 
 
 Aspektem który nas najbardziej interesuje jest niskopoziomowa obsługa breakpointów. Mechanizm działania jest podzielony na 2 etapy:
 
-1. Deklaracja breakpointu
-2. Obsługa eventu wygenerowanego przez breakpoint (tu następuje decyzja czy zatrzymać wykonywanie czy nie)
-
+\begin{enumerate}
+\item Deklaracja breakpointu
+\item Obsługa eventu wygenerowanego przez breakpoint (tu następuje decyzja czy zatrzymać wykonywanie czy nie)
+\end{enumerate}
 JVM TI pozwala nam także na dostęp do zmiennych lokalnych oraz parametrów metod. Pozwoli nam to na przechwytywanie przesłanych komunikatów bez udziału debbugera a co za tym idzie przyspieszenie całego procesu, gdyż komunikacja między dwiema aplikacjami jest kosztowna.
 
 
 \subsubsection{JDWP: protokół transportowy}
 
-Java Debug Wire Protocol: protokół transportowy wykożystywany do komunikacji między maszyną wirtualną (JVM TI) a debuggerem (lub innym programem takim jak profiler). W asychronicznym debuggerze korzystamy z imlementacji dostarczanej przez JDT. W wiekszości przypadków komunikacja jest schowana za warstwą abstracji implementują JDI. Więcej informacji możemy znaleść w specyfikacji\cite{jwdpSpec}
+Java Debug Wire Protocol: protokół transportowy wykożystywany do komunikacji między maszyną wirtualną (JVM TI) a debuggerem (lub innym programem takim jak profiler). W asychronicznym debuggerze korzystamy z imlementacji dostarczanej przez Java Debug T. W wiekszości przypadków komunikacja jest schowana za warstwą abstrakcji implementują JDI. Więcej informacji możemy znaleść w specyfikacji\cite{jwdpSpec}
 
 \subsubsection{JDI: wysokopoziomowe API}
 
-Wysokopoziomowe API służace do tworzenia debuggerów i innych narzędzi programistycych (np. profilerów). Podobnie jak JDWP jest zaimplementowany przez JDT i stanowi wysokopoziomowe API które jest podstawą debuggera.
-Zawiera metody pozwalające na:
-- deklarowanie breakpointów
-- obsługę eventów (np. zatrzymanie na breakpoint'cie)
-- dostęp do obiektów (parametrów metod, zmiennych lokalnych czy statycnych pól),
-- wywoływanie metod i tworzenie nowych instacji
-- sterowanie wywołaniem aplikacji
-
-Większość wymienionych metod zostanie wykorzystana do stworzenia asychronicznego debugera.
+Wysokopoziomowe API służace do tworzenia debuggerów i innych narzędzi programistycych (np. profilerów). JDI jest interfesjem udostępnianym przez implementacje JDWP i służy do wysokopoziomowej komunikacji z debuggowaną maszyną wirtualną. Podobnie jak JDWP jest zaimplementowany przez JDT i będzie stanowić podstawę dla omawianego asynchronicznego debuggera.
+Zawiera metody pozwalające na: \begin{enumerate}
+\item deklarowanie breakpointów
+\item obsługę eventów (np. zatrzymanie na breakpoint'cie)
+\item dostęp do obiektów (parametrów metod, zmiennych lokalnych czy statycnych pól),
+\item wywoływanie metod i tworzenie nowych instancji
+\item sterowanie wywołaniem aplikacji
+\end{enumerate} Większość wymienionych metod zostanie wykorzystana do stworzenia asychronicznego debugera.
 
 
 % Dalsza część jest mocno pogądowa i nie nadaje się za bardzo do czytania (poza tytułami rozdziałów
-
-\subsection{Narzędia udostępniane przez JDPA}
-
-TODO: opisać breakpoint, code evaluation itp. - to co bedziemy wykorzystywać.
 
 
 
