@@ -1,16 +1,45 @@
 \chapter{Asychroniczny debugger}
 
-W tym rozdziale zamierzam przedstawić zasadę działania wykorzystanego asynchronicznego debuggera na tle narzędzi oferowanych przez JVM. Zamierzam nakreślić problemy oraz sposoby ich rozwiązywania oraz pokazać dlaczego sposób perysytencji komunikatów jest kluczowy dla minimalizacji wpływu debuggera na debugowaną aplikacje. 
+W tym rozdziale zamierzam opisać techniki służące debuggowaniu oraz pokazać dlaczego mogą być niewsytarczjące do debuggowania aplikacji asychronicznych. Przedstawie także zasadę działania wykorzystanego asynchronicznego debuggera oraz pokaże dlaczego efektywaność persystencji komunikatów jest kluczowa.
 
 %---------------------------------------------------------------------------
+\section{Aplikacje asynchroniczne oraz ich problemy}
+
+W tym podrozdziale scharakteryzuje asplikacje asychroniczne oraz przedstawie dodatkowe problemy które się w nich pojawiają.
+
+\subsection{Aplikacje komunikujące się asynchronicznie}
+
+TODO definicja
+
+\subsection{Problemy}
+Vipindeep i Pankaj w swoim artykule \cite{commonBugs} przedstawili powszechne problemy które pojawiają się podczas tworzenia applikacji. Większość z nich daje sie łatwo rowiązać przy zwałaszcza przy wykorzystaniu narzędzi takich jak debbugger. W przypaku prostycj błędów aktorytmicznych analiza kodu jest wystarczającym kontekstem, lecz w przypadku skomplikowanych i dynamicznych aplikacji musimy posiłkować się wsparciem narzędzi. Przykładowo problem podwójnego zwalniania zasobów możemy względie prosto rozwiązać korzystając z debuggara. Zatrzymujać aplikację w miejscach zwalniania problematycznego zasobu i analizjąc historię oraz kotekst wywołąnia możemy wyeliminować błędny kod.
+
+Powyższy przykład zwraca uwagę na wagę historii wywołań jako kluczowej do rowziązania wielu problemów. Żeby znaleść przyczyne powstania błędu musimy wiedzieć jak do niego doszło. Cowięcej błedy w programie manifestują się daleko od miejsca w którym zostały popełnione. Przykładowo błąd w konifugracji programu podczas startu może obiwaić się dopiero przy próbie użycia danej funkcjonalności.
+
+\subsection{Histia wywołań, wątki a aplikacje asychroniczne}
+
+opisać dlaczego historia nie jest prosta tu
+
+\subsection{Asychrnoniczność oraz czas jako dodatkowy czynnik}
+
+Applikacje asychrnoniczne są szczególnie narażone w błedy opisane przez Vipindeep i Pankaj w podroziale 2.3. opisali klasę problemów szczególnie ważnych dla aplikacji asychrnonicznych. Programiści tworząc aplikację asychrnoniczne często pomijają fakt że dany fragment kodu w pewnych sytuacjach może wykonywać się znacząco wolniej przez co spowoduje że poprawne działanie zostanie zakłucone i np. inny komunikat zepsuje stan (TODO: corrupt + lepsza ilustracja). Przedstawiona klasa problemów wymaga od narzędzi jaknajmniejszej ingerencji w debuggowaną applikacje. 
+
+\subsection{Klasy problemów w kontekscie aplikacji asychronicznych}
+
+Podsuowując powyższe podrodziały możemy podzielić problemy na 3 klasy:
+\begin{enumerate}
+\item Problemy wymagające konteksu historycznego od momentu odebrania wiadmości
+\item Problemy wymagające historii wysłanych wiadomości
+\item Problemy wymagjące minimalnej ingerencji w debuggowana aplikację. 
+\end{enumerate} 
 
 \section{Techniki i narzędzia służących do debuggowania}
 
-W tym podrozdziale przedstawię techniki oraz narzędzia służące analizie i debugowaniu aplikacji które udostępnia ekosystem JVM. Zamierzam również pokazać dlaczego narzędzia te są niewystrczające do debugowania programów asychronicznych.
+W tym podrozdziale przedstawię techniki oraz narzędzia służące analizie i debugowaniu aplikacji które udostępnia ekosystem JVM. Zamierzam również pokazać dlaczego narzędzia te są niewystarczające do debugowania programów asychronicznych.
 
 \subsection{Histria działania jako klucz do rozwiązania problemu}
 
-//TODO opisać to szerzej i zmienić tytuł.
+ 
 
 \subsection{Historia wywołania a wątki}
 
