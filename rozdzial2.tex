@@ -12,30 +12,30 @@ W tym podrozdziale scharakteryzuje asplikacje asychroniczne oraz przedstawie dod
 TODO definicja
 
 \subsection{Problemy}
-Vipindeep i Pankaj w swoim artykule \cite{commonBugs} przedstawili powszechne problemy które pojawiają się podczas tworzenia applikacji. Większość z nich daje sie łatwo rowiązać przy zwałaszcza przy wykorzystaniu narzędzi takich jak debbugger. W przypaku prostycj błędów aktorytmicznych analiza kodu jest wystarczającym kontekstem, lecz w przypadku skomplikowanych i dynamicznych aplikacji musimy posiłkować się wsparciem narzędzi. Przykładowo problem podwójnego zwalniania zasobów możemy względie prosto rozwiązać korzystając z debuggara. Zatrzymujać aplikację w miejscach zwalniania problematycznego zasobu i analizjąc historię oraz kotekst wywołąnia możemy wyeliminować błędny kod.
+Vipindeep i Pankaj w swoim artykule \cite{commonBugs} przedstawili powszechne problemy które pojawiają się podczas tworzenia applikacji. Większość z nich daje się łatwo rozwiązać przy zawłaszcza przy wykorzystaniu narzędzi takich jak debugger. W przypadku prostych błędów algorytmicznych analiza kodu jest wystarczającym kontekstem, lecz w przypadku skomplikowanych i dynamicznych aplikacji musimy posiłkować się wsparciem narzędzi. Przykładowo problem podwójnego zwalniania zasobów możemy względnie prosto rozwiązać korzystając z debuggera. Zatrzymując aplikację w miejscach zwalniania problematycznego zasobu i analizując historię oraz kontekst wywołania możemy wyeliminować błędny kod.
 
-Powyższy przykład zwraca uwagę na wagę historii wywołań jako kluczowej do rowziązania wielu problemów. Żeby znaleść przyczyne powstania błędu musimy wiedzieć jak do niego doszło. Cowięcej błedy w programie manifestują się daleko od miejsca w którym zostały popełnione. Przykładowo błąd w konifugracji programu podczas startu może obiwaić się dopiero przy próbie użycia danej funkcjonalności.
+Powyższy przykład zwraca uwagę na wagę historii wywołań jako kluczowej do rozwiązania wielu problemów. Żeby znaleźć przyczynę powstania błędu musimy wiedzieć jak do niego doszło. Co więcej błędy w programie manifestują się daleko od miejsca w którym zostały popełnione. Przykładowo błąd w konfiguracji programu podczas startu może objawiać się dopiero przy próbie użycia danej funkcjonalności.
 
-\subsection{Histia wywołań, wątki a aplikacje asychroniczne}
+\subsection{Histia wywołań, wątki a aplikacje asynchroniczne}
 
-opisać dlaczego historia nie jest prosta tu
+opisać dlaczego historia nie jest prosta tu. Podzielić na dwie klasy ze względu na źródło powstania problemu (przed i po komunikatem)
 
-\subsection{Asychrnoniczność oraz czas jako dodatkowy czynnik}
+\subsection{Asynchroniczność oraz czas jako dodatkowy czynnik}
 
-Applikacje asychrnoniczne są szczególnie narażone w błedy opisane przez Vipindeep i Pankaj w podroziale 2.3. opisali klasę problemów szczególnie ważnych dla aplikacji asychrnonicznych. Programiści tworząc aplikację asychrnoniczne często pomijają fakt że dany fragment kodu w pewnych sytuacjach może wykonywać się znacząco wolniej przez co spowoduje że poprawne działanie zostanie zakłucone i np. inny komunikat zepsuje stan (TODO: corrupt + lepsza ilustracja). Przedstawiona klasa problemów wymaga od narzędzi jaknajmniejszej ingerencji w debuggowaną applikacje. 
+Aplikacje asynchroniczne są szczególnie narażone w błędy opisane przez Vipindeep i Pankaj w podrozdziale 2.3 \cite{commonBugs} opisali klasę problemów szczególnie ważnych dla aplikacji asynchronicznych. Programiści tworząc aplikację  często pomijają fakt że dany fragment kodu w pewnych sytuacjach może wykonywać się znacząco wolniej przez co spowoduje że poprawne działanie zostanie zakłócone i np. inny komunikat zepsuje stan (TODO: corrupt + lepsza ilustracja). Przedstawiona klasa problemów wymaga od narzędzi jak najmniejszej ingerencji w debugowaną aplikacje. 
 
-\subsection{Klasy problemów w kontekscie aplikacji asychronicznych}
+\subsection{Klasy problemów w kontekście aplikacji asynchronicznych}
 
-Podsuowując powyższe podrodziały możemy podzielić problemy na 3 klasy:
+Podsumowując powyższe podrozdziały możemy podzielić problemy aplikacji asynchronicznych na 3 klasy:
 \begin{enumerate}
-\item Problemy wymagające konteksu historycznego od momentu odebrania wiadmości
+\item Problemy wymagające kontekstu historycznego od momentu odebrania wiadomości
 \item Problemy wymagające historii wysłanych wiadomości
-\item Problemy wymagjące minimalnej ingerencji w debuggowana aplikację. 
+\item Problemy wymagające minimalnej ingerencji w debugowana aplikację. 
 \end{enumerate} 
 
-\section{Techniki i narzędzia służących do debuggowania}
+\section{Techniki i narzędzia służących do debugowania}
 
-W tym podrozdziale przedstawię techniki oraz narzędzia służące analizie i debugowaniu aplikacji które udostępnia ekosystem JVM. Zamierzam również pokazać dlaczego narzędzia te są niewystarczające do debugowania programów asychronicznych.
+W tym podrozdziale przedstawię techniki oraz narzędzia służące analizie i debugowaniu aplikacji które udostępnia ekosystem JVM. Zamierzam równiesz przedstawić ich przydatność w każej klasie problemów przytoczonych w poprzednim podrozdziale.
 
 \subsection{Histria działania jako klucz do rozwiązania problemu}
 
